@@ -835,14 +835,14 @@ class Config(object):
 		# Only tables that are available for this instance's particular
 		# machoNet version will be in this set, and are the only tables loaded
 		# when prime() is called.
-		self._tables = dict(((k, v) for k, v in self.__tables__ if protocol >= v[0] and protocol < v[1] or 2147483647))
+		self._tables = dict(((k, v) for k, v in self.__tables__ if v[0] <= protocol < (v[1] or 2147483647)))
 		self.tables = frozenset(( \
 			attrName for attrName in dir(self.__class__) \
 			if attrName[0] != "_" \
-			and isinstance(getattr(self.__class__, attrName), _memoize) \
-			and protocol >= self._tables[attrName][0] \
-			and protocol < (self._tables[attrName][1] or 2147483647) \
-		))
+                        and isinstance(getattr(self.__class__, attrName), _memoize) \
+                        and self._tables.has_key(attrName) \
+                        and self._tables[attrName][0] <= protocol < (self._tables[attrName][1] or 2147483647)\
+        ))
 		self._attrCache = {}
 
 		self.localdb = sqlite3.connect(os.path.join(self.cache.BULK_SYSTEM_PATH, "mapbulk.db"))

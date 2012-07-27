@@ -8,3 +8,7 @@ test/*
 build.py
 upload.py
 
+.idea*/
+*.pyd
+*.pyc
+test.py

@@ -835,7 +835,7 @@ class Config(object):
 		# Only tables that are available for this instance's particular
 		# machoNet version will be in this set, and are the only tables loaded
 		# when prime() is called.
-		self._tables = dict(((k, v) for k, v in self.__tables__ if protocol >= v[0] and protocol < (v[1] or 2147483647)))
+		self._tables = dict(((k, v) for k, v in self.__tables__ if protocol >= v[0] and protocol < v[1] or 2147483647))
 		self.tables = frozenset(( \
 			attrName for attrName in dir(self.__class__) \
 			if attrName[0] != "_" \

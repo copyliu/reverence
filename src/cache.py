@@ -146,10 +146,11 @@ class CacheMgr:
 		# of the EVE shortcut, even if it's an IP address.
 
 		serveraliases = {
-			"tranquility": "87.237.38.200",
-			"singularity": "87.237.38.50",
-			"duality": "87.237.38.60",
-		}
+				"tranquility": "87.237.38.200",
+				"singularity": "87.237.38.50",
+				"duality": "87.237.38.60",
+				"serenity":"211.144.214.68"
+			}
 
 		if servername.replace(".","").isdigit():
 			serverip = servername
@@ -162,6 +163,8 @@ class CacheMgr:
 
 		if serverip == "87.237.38.200":
 			servername = "Tranquility"
+		elif serverip == "211.144.214.68":
+			servername = "211.144.214.68"
 
 		#---------------------
 
